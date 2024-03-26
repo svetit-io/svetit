@@ -2,7 +2,7 @@
   "configurations": [
       {
           "name": "CMake",
-          "compileCommands": "/home/user/svetit/src/back/project/build_debug/compile_commands.json",
+          "compileCommands": "${workspaceFolder}/build_debug/compile_commands.json",
           "configurationProvider": "ms-vscode.cmake-tools"
       }
   ],

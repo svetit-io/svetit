@@ -5,12 +5,12 @@
             "name": "(gdb) launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/user/svetit/src/back/project/build_debug/svetit_project",
+            "program": "${workspaceFolder}/build_debug/svetit_project",
             "args": [
                 "--config",
-				"/home/user/svetit/src/back/project/configs/static_config.yaml",
+				"${workspaceFolder}/configs/static_config.yaml",
                 "--config_vars",
-				"/home/user/svetit/src/back/project/configs/config_vars.yaml"
+				"${workspaceFolder}/configs/config_vars.yaml"
             ],
             "cwd": "${workspaceFolder}",
             "environment": [],
