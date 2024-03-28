@@ -973,107 +973,462 @@ async def test_device_plugin_param_list(service_client):
 
 
 async def test_code(service_client):
-	"""Discovery requests to code endpoint"""
+	"""Code endpoint"""
+
+	"""Get without param"""
 	res = await service_client.get('/project/code')
+	assert res.status == 400
+
+	"""Get with invalid param"""
+	res = await service_client.get('/project/code' + '?id=abc')
+	assert res.status == 400
+
+	"""Get with valid param"""
+	res = await service_client.get('/project/code' + '?id=1')
 	assert res.status == 200
 
+	"""Post without body"""
 	res = await service_client.post('/project/code')
+	assert res.status == 400
+
+	"""Post with invalid body"""
+	body_invalid = {
+		'project_id': 'abc',
+		'repository_id': 123,
+		'commit_hash': False
+	}
+	res = await service_client.post('/project/code', json=body_invalid)
+	assert res.status == 400
+
+	"""Post with valid body"""
+	body_valid = {
+		'project_id': '11111111-1111-1111-1111-111111111111',
+		'repository_id': '4572def0053fcba64e4becb1800a1d160502e99f',
+		'commit_hash': False
+	}
+	res = await service_client.post('/project/code', json=body_valid)
 	assert res.status == 200
 
+	"""Patch without body"""
 	res = await service_client.patch('/project/code')
+	assert res.status == 400
+
+	"""Patch with invalid body"""
+	body_invalid = {
+		'id': 'xyz',
+		'project_id': 'abc',
+		'repository_id': 123,
+		'commit_hash': False
+	}
+	res = await service_client.patch('/project/code', json=body_invalid)
+	assert res.status == 400
+
+	"""Patch with valid body"""
+	body_valid = {
+		'id': 1,
+		'project_id': '11111111-1111-1111-1111-111111111111',
+		'repository_id': '4572def0053fcba64e4becb1800a1d160502e99f',
+		'commit_hash': False
+	}
+	res = await service_client.patch('/project/code', json=body_valid)
 	assert res.status == 200
 
+	"""Delete without param"""
 	res = await service_client.delete('/project/code')
+	assert res.status == 400
+
+	"""Delete with invalid param"""
+	res = await service_client.delete('/project/code' + '?id=abc')
+	assert res.status == 400
+
+	"""Delete with valid param"""
+	res = await service_client.delete('/project/code' + '?id=1')
 	assert res.status == 200
 
 
 async def test_code_list(service_client):
-	"""Discovery request to code list endpoint"""
+	"""Code list endpoint"""
+
+	"""Without params"""
 	res = await service_client.get('/project/code/list')
+	assert res.status == 400
+
+	"""With invalid params"""
+	res = await service_client.get('/project/code/list' + '?start=-1&limit=abc')
+	assert res.status == 400
+
+	"""With valid params"""
+	res = await service_client.get('/project/code/list' + '?start=0&limit=5')
 	assert res.status == 200
 
 
 async def test_measure(service_client):
-	"""Discovery requests to measure endpoint"""
+	"""Measure endpoint"""
+
+	"""Get without param"""
 	res = await service_client.get('/project/measure')
+	assert res.status == 400
+
+	"""Get with invalid param"""
+	res = await service_client.get('/project/measure' + '?id=abc')
+	assert res.status == 400
+
+	"""Get with valid param"""
+	res = await service_client.get('/project/measure' + '?id=1')
 	assert res.status == 200
 
+	"""Post without body"""
 	res = await service_client.post('/project/measure')
+	assert res.status == 400
+
+	"""Post with invalid body"""
+	body_invalid = {
+		'project_id': 'abc',
+		'name': 123,
+		'is_deleted': -1
+	}
+	res = await service_client.post('/project/measure', json=body_invalid)
+	assert res.status == 400
+
+	"""Post with valid body"""
+	body_valid = {
+		'project_id': '11111111-1111-1111-1111-111111111111',
+		'name': 'Test measure',
+		'is_deleted': False
+	}
+	res = await service_client.post('/project/measure', json=body_valid)
 	assert res.status == 200
 
+	"""Patch without body"""
 	res = await service_client.patch('/project/measure')
+	assert res.status == 400
+
+	"""Patch with invalid body"""
+	body_invalid = {
+		'id': -1,
+		'project_id': 'abc',
+		'name': 123,
+		'is_deleted': -1
+	}
+	res = await service_client.patch('/project/measure', json=body_invalid)
+	assert res.status == 400
+
+	"""Patch with valid body"""
+	body_valid = {
+		'id': 1,
+		'project_id': '11111111-1111-1111-1111-111111111111',
+		'name': 'Test measure',
+		'is_deleted': True
+	}
+	res = await service_client.patch('/project/measure', json=body_valid)
 	assert res.status == 200
 
+	"""Delete without param"""
 	res = await service_client.delete('/project/measure')
+	assert res.status == 400
+
+	"""Delete with invalid param"""
+	res = await service_client.delete('/project/measure' + '?id=abc')
+	assert res.status == 400
+
+	"""Delete with valid param"""
+	res = await service_client.delete('/project/measure' + '?id=1')
 	assert res.status == 200
 
 
 async def test_measure_list(service_client):
-	"""Discovery request to measure list endpoint"""
+	"""Measure list endpoint"""
+
+	"""Without params"""
 	res = await service_client.get('/project/measure/list')
+	assert res.status == 400
+
+	"""With invalid params"""
+	res = await service_client.get('/project/measure/list' + '?start=-1&limit=abc&keepDeleted=x')
+	assert res.status == 400
+
+	"""With valid params"""
+	res = await service_client.get('/project/measure/list' + '?start=0&limit=5&keepDeleted=true')
 	assert res.status == 200
 
 
 async def test_save_timer(service_client):
-	"""Discovery requests to save_timer endpoint"""
+	"""Save_timer endpoint"""
+
+	"""Get without param"""
 	res = await service_client.get('/project/save-timer')
+	assert res.status == 400
+
+	"""Get with invalid param"""
+	res = await service_client.get('/project/save-timer' + '?id=abc')
+	assert res.status == 400
+
+	"""Get with valid param"""
+	res = await service_client.get('/project/save-timer' + '?id=1')
 	assert res.status == 200
 
+	"""Post without body"""
 	res = await service_client.post('/project/save-timer')
+	assert res.status == 400
+
+	"""Post with invalid body"""
+	body_invalid = {
+		'project_id': 'abc',
+		'interval_msec': 'xyz'
+	}
+	res = await service_client.post('/project/save-timer', json=body_invalid)
+	assert res.status == 400
+
+	"""Post with valid body"""
+	body_valid = {
+		'project_id': '11111111-1111-1111-1111-111111111111',
+		'interval_msec': 1
+	}
+	res = await service_client.post('/project/save-timer', json=body_valid)
 	assert res.status == 200
 
+	"""Patch without body"""
 	res = await service_client.patch('/project/save-timer')
+	assert res.status == 400
+
+	"""Patch with invalid body"""
+	body_invalid = {
+		'id': 1,
+		'project_id': 'abc',
+		'interval_msec': 'xyz'
+	}
+	res = await service_client.patch('/project/save-timer', json=body_invalid)
+	assert res.status == 400
+
+	"""Patch with valid body"""
+	body_valid = {
+		'id': 1,
+		'project_id': '11111111-1111-1111-1111-111111111111',
+		'interval_msec': 'xyz'
+	}
+	res = await service_client.patch('/project/save-timer', json=body_valid)
 	assert res.status == 200
 
+	"""Delete without param"""
 	res = await service_client.delete('/project/save-timer')
+	assert res.status == 400
+
+	"""Delete with invalid param"""
+	res = await service_client.delete('/project/save-timer' + '?id=abc')
+	assert res.status == 400
+
+	"""Delete with valid param"""
+	res = await service_client.delete('/project/save-timer' + '?id=1')
 	assert res.status == 200
 
 
 async def test_save_timer_list(service_client):
 	"""Discovery request to save_timer list endpoint"""
+
+	"""Without params"""
 	res = await service_client.get('/project/save-timer/list')
+	assert res.status == 400
+
+	"""With invalid params"""
+	res = await service_client.get('/project/save-timer/list' + '?start=-1&limit=abc')
+	assert res.status == 400
+
+	"""With valid params"""
+	res = await service_client.get('/project/save-timer/list' + '?start=0&limit=5')
 	assert res.status == 200
 
 
 async def test_cc_type_param(service_client):
-	"""Discovery requests to cc_type_param endpoint"""
+	"""Cc_type_param endpoint"""
+
+	"""Get without params"""
 	res = await service_client.get('/project/cc-type-param')
+	assert res.status == 400
+
+	"""Get with invalid params"""
+	res = await service_client.get('/project/cc-type-param' + '&ccTypeId=abc&paramId=xyz')
+	assert res.status == 400
+
+	"""Get with valid params"""
+	res = await service_client.get('/project/cc-type-param' + '&ccTypeId=1&paramId=1')
 	assert res.status == 200
 
+	"""Post without body"""
 	res = await service_client.post('/project/cc-type-param')
+	assert res.status == 400
+
+	"""Post with invalid body"""
+	body_invalid = {
+		'cc_type_id': 'abc',
+		'param_id': -1,
+		'is_deleted': 'test'
+	}
+	res = await service_client.post('/project/cc-type-param', json=body_invalid)
+	assert res.status == 400
+
+	"""Post with valid body"""
+	body_valid = {
+		'cc_type_id': 1,
+		'param_id': 1,
+		'is_deleted': False
+	}
+	res = await service_client.post('/project/cc-type-param', json=body_valid)
 	assert res.status == 200
 
+	"""Patch without body"""
 	res = await service_client.patch('/project/cc-type-param')
+	assert res.status == 400
+
+	"""Patch with invalid body"""
+	body_invalid = {
+		'cc_type_id': 'abc',
+		'param_id': -1,
+		'is_deleted': 'test'
+	}
+	res = await service_client.patch('/project/cc-type-param', json=body_invalid)
+	assert res.status == 400
+
+	"""Patch with valid body"""
+	body_valid = {
+		'cc_type_id': 1,
+		'param_id': 1,
+		'is_deleted': False
+	}
+	res = await service_client.patch('/project/cc-type-param', json=body_valid)
 	assert res.status == 200
 
+	"""Delete without params"""
 	res = await service_client.delete('/project/cc-type-param')
+	assert res.status == 400
+
+	"""Delete with invalid params"""
+	res = await service_client.delete('/project/cc-type-param' + '?ccTypeId=abc&paramId=xyz')
+	assert res.status == 400
+
+	"""Delete with valid params"""
+	res = await service_client.delete('/project/cc-type-param' + '?ccTypeId=1&paramId=1')
 	assert res.status == 200
 
 
 async def test_cc_type_param_list(service_client):
-	"""Discovery request to cc_type_param list endpoint"""
+	"""Cc_type_param list endpoint"""
+
+	"""Without params"""
 	res = await service_client.get('/project/cc-type-param/list')
+	assert res.status == 400
+
+	"""With invalid params"""
+	res = await service_client.get('/project/cc-type-param/list' + '?start=-1&limit=abc&keepDeleted=x')
+	assert res.status == 400
+
+	"""With valid params"""
+	res = await service_client.get('/project/cc-type-param/list' + '?start=0&limit=5&keepDeleted=true')
 	assert res.status == 200
 
 
 async def test_di_type(service_client):
-	"""Discovery requests to di_type endpoint"""
+	"""Di_type endpoint"""
+
+	"""Get without param"""
 	res = await service_client.get('/project/di-type')
+	assert res.status == 400
+
+	"""Get with invalid param"""
+	res = await service_client.get('/project/di-type' + '?id=abc')
+	assert res.status == 400
+
+	"""Get with valid param"""
+	res = await service_client.get('/project/di-type' + '?id=1')
 	assert res.status == 200
 
+	"""Post without body"""
 	res = await service_client.post('/project/di-type')
+	assert res.status == 400
+
+	"""Post with invalid body"""
+	body_invalid = {
+		'measure_id': 'abc',
+		'save_timer_id': 'xyz',
+		'key': 123,
+		'name': 456,
+		'mode': 'invalid',
+		'save_algorithm': 'invalid',
+		'is_deleted': 5
+	}
+	res = await service_client.post('/project/di-type', json=body_invalid)
+	assert res.status == 400
+
+	"""Post with valid body"""
+	body_valid = {
+		'measure_id': 1,
+		'save_timer_id': 1,
+		'key': 'abc123',
+		'name': 'Test',
+		'mode': 'readonly_flag',
+		'save_algorithm': 'off',
+		'is_deleted': False
+	}
+	res = await service_client.post('/project/di-type', json=body_valid)
 	assert res.status == 200
 
+	"""Patch without body"""
 	res = await service_client.patch('/project/di-type')
+	assert res.status == 400
+
+	"""Patch with invalid body"""
+	body_invalid = {
+		'id': -1,
+		'measure_id': 'abc',
+		'save_timer_id': 'xyz',
+		'key': 123,
+		'name': 456,
+		'mode': 'invalid',
+		'save_algorithm': 'invalid',
+		'is_deleted': 5
+	}
+	res = await service_client.patch('/project/di-type', json=body_invalid)
+	assert res.status == 400
+
+	"""Patch with valid body"""
+	body_valid = {
+		'id': 1,
+		'measure_id': 1,
+		'save_timer_id': 1,
+		'key': 'abc123',
+		'name': 'Test',
+		'mode': 'readonly_flag',
+		'save_algorithm': 'off',
+		'is_deleted': False
+	}
+	res = await service_client.patch('/project/di-type', json=body_valid)
 	assert res.status == 200
 
+	"""Delete without param"""
 	res = await service_client.delete('/project/di-type')
+	assert res.status == 400
+
+	"""Delete with invalid param"""
+	res = await service_client.delete('/project/di-type' + '?id=abc')
+	assert res.status == 400
+
+	"""Delete with valid param"""
+	res = await service_client.delete('/project/di-type' + '?id=1')
 	assert res.status == 200
 
 
 async def test_di_type_list(service_client):
 	"""Discovery request to di_type list endpoint"""
+
+	"""Without params"""
 	res = await service_client.get('/project/di-type/list')
+	assert res.status == 400
+
+	"""With invalid params"""
+	res = await service_client.get('/project/di-type/list' + '?start=-1&limit=abc&keepDeleted=x')
+	assert res.status == 400
+
+	"""With valid params"""
+	res = await service_client.get('/project/di-type/list' + '?start=0&limit=5&keepDeleted=true')
 	assert res.status == 200
 
 
