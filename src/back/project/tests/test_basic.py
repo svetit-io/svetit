@@ -53,7 +53,7 @@ async def test_project(service_client):
 	assert res.status == 400
 
 	"""Post with invalid body"""
-	body_invalid={
+	body_invalid = {
 		'space_id': 'abc123',
 		'key': 123,
 		'name': True,
@@ -64,10 +64,10 @@ async def test_project(service_client):
 	assert res.status == 400
 
 	"""Post with valid body"""
-	body_valid={
+	body_valid = {
 		'space_id': '33333333-3333-3333-3333-333333333333',
-		'key': "test",
-		'name': "Test project",
+		'key': 'test',
+		'name': 'Test project',
 		'description': 'Text',
 		'sync': 'project_to_node'
 	}
@@ -79,7 +79,7 @@ async def test_project(service_client):
 	assert res.status == 400
 
 	"""Patch with invalid body"""
-	body_invalid={
+	body_invalid = {
 		'id': 'abc',
 		'space_id': 'abc123',
 		'key': 123,
@@ -91,11 +91,11 @@ async def test_project(service_client):
 	assert res.status == 400
 
 	"""Patch with valid body"""
-	body_valid={
+	body_valid = {
 		'id': '11111111-1111-1111-1111-111111111111',
 		'space_id': '33333333-3333-3333-3333-333333333333',
-		'key': "test",
-		'name': "Test project",
+		'key': 'test',
+		'name': 'Test project',
 		'description': 'Text',
 		'sync': 'project_to_node'
 	}
@@ -131,7 +131,7 @@ async def test_project_list(service_client):
 
 
 async def test_param_type(service_client):
-	"""Param_type endpoint"""
+	"""Param type endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/param-type')
@@ -217,7 +217,7 @@ async def test_param_type(service_client):
 
 
 async def test_param_type_list(service_client):
-	"""Param_type list endpoint"""
+	"""Param type list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/param-type/list')
@@ -233,7 +233,7 @@ async def test_param_type_list(service_client):
 
 
 async def test_project_param(service_client):
-	"""Project_param endpoint"""
+	"""Project param endpoint"""
 	"""Get without params"""
 	res = await service_client.get('/project/project-param')
 	assert res.status == 400
@@ -304,7 +304,7 @@ async def test_project_param(service_client):
 
 
 async def test_project_param_list(service_client):
-	"""Project_param list endpoint"""
+	"""Project param list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/project-param/list')
@@ -350,7 +350,7 @@ async def test_section(service_client):
 	"""Post with valid body"""
 	body_valid = {
 		'project_id': '11111111-1111-1111-1111-111111111111',
-		'name': "Test section",
+		'name': 'Test section',
 		'is_deleted': False
 	}
 	res = await service_client.post('/project/section', json=body_valid)
@@ -374,7 +374,7 @@ async def test_section(service_client):
 	body_valid = {
 		'id': 1,
 		'project_id': '11111111-1111-1111-1111-111111111111',
-		'name': "Test section",
+		'name': 'Test section',
 		'is_deleted': True
 	}
 	res = await service_client.patch('/project/section', json=body_valid)
@@ -410,7 +410,7 @@ async def test_section_list(service_client):
 
 
 async def test_section_param(service_client):
-	"""Section_param endpoint"""
+	"""Section param endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/section-param')
@@ -482,7 +482,7 @@ async def test_section_param(service_client):
 
 
 async def test_section_param_list(service_client):
-	"""Section_param list endpoint"""
+	"""Section param list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/section-param/list')
@@ -498,7 +498,7 @@ async def test_section_param_list(service_client):
 
 
 async def test_cc_type(service_client):
-	"""Cc_type endpoint"""
+	"""Cc type endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/cc-type')
@@ -530,9 +530,9 @@ async def test_cc_type(service_client):
 	"""Post with valid body"""
 	body_valid = {
 		'project_id': '11111111-1111-1111-1111-111111111111',
-		'key': "abc123",
-		'name': "Test cc_type",
-		'description': "Description",
+		'key': 'abc123',
+		'name': 'Test cc_type',
+		'description': 'Description',
 		'is_deleted': False
 	}
 	res = await service_client.post('/project/cc-type', json=body_valid)
@@ -558,9 +558,9 @@ async def test_cc_type(service_client):
 	body_valid = {
 		'id': 1,
 		'project_id': '11111111-1111-1111-1111-111111111111',
-		'key': "abc123",
-		'name': "Test cc_type",
-		'description': "Description",
+		'key': 'abc123',
+		'name': 'Test cc_type',
+		'description': 'Description',
 		'is_deleted': False
 	}
 	res = await service_client.patch('/project/cc-type', json=body_valid)
@@ -580,7 +580,7 @@ async def test_cc_type(service_client):
 
 
 async def test_cc_type_list(service_client):
-	"""Cc_type list endpoint"""
+	"""Cc type list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-type/list')
@@ -596,7 +596,7 @@ async def test_cc_type_list(service_client):
 
 
 async def test_control_circuit(service_client):
-	"""Control_circuit endpoint"""
+	"""Control circuit endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/control-circuit')
@@ -628,7 +628,7 @@ async def test_control_circuit(service_client):
 	body_valid = {
 		'type_id': 1,
 		'section_id': 1,
-		'name': "Test control curcuit",
+		'name': 'Test control curcuit',
 		'is_deleted': False
 	}
 	res = await service_client.post('/project/control-circuit', json=body_valid)
@@ -654,7 +654,7 @@ async def test_control_circuit(service_client):
 		'id': 1,
 		'type_id': 1,
 		'section_id': 1,
-		'name': "Test control curcuit",
+		'name': 'Test control curcuit',
 		'is_deleted': False
 	}
 	res = await service_client.patch('/project/control-circuit', json=body_valid)
@@ -674,7 +674,7 @@ async def test_control_circuit(service_client):
 
 
 async def test_control_circuit_list(service_client):
-	"""Control_circuit list endpoint"""
+	"""Control circuit list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/control-circuit/list')
@@ -724,7 +724,7 @@ async def test_plugin(service_client):
 		'project_id': '11111111-1111-1111-1111-111111111111',
 		'name': 'Test plugin',
 		'description': 'Description',
-		'key': "abc123",
+		'key': 'abc123',
 		'is_deleted': False
 	}
 	res = await service_client.post('/project/plugin', json=body_valid)
@@ -752,7 +752,7 @@ async def test_plugin(service_client):
 		'project_id': '11111111-1111-1111-1111-111111111111',
 		'name': 'Test plugin',
 		'description': 'Description',
-		'key': "abc123",
+		'key': 'abc123',
 		'is_deleted': False
 	}
 	res = await service_client.patch('/project/plugin', json=body_valid)
@@ -885,7 +885,7 @@ async def test_device_list(service_client):
 
 
 async def test_device_plugin_param(service_client):
-	"""Device_plugin_param endpoint"""
+	"""Device plugin param endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/device-plugin-param')
@@ -957,7 +957,7 @@ async def test_device_plugin_param(service_client):
 
 
 async def test_device_plugin_param_list(service_client):
-	"""Device_plugin_param list endpoint"""
+	"""Device plugin param list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/device-plugin-param/list')
@@ -1153,7 +1153,7 @@ async def test_measure_list(service_client):
 
 
 async def test_save_timer(service_client):
-	"""Save_timer endpoint"""
+	"""Save timer endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/save-timer')
@@ -1239,7 +1239,7 @@ async def test_save_timer_list(service_client):
 
 
 async def test_cc_type_param(service_client):
-	"""Cc_type_param endpoint"""
+	"""Cc type param endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/cc-type-param')
@@ -1311,7 +1311,7 @@ async def test_cc_type_param(service_client):
 
 
 async def test_cc_type_param_list(service_client):
-	"""Cc_type_param list endpoint"""
+	"""Cc type param list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-type-param/list')
@@ -1327,7 +1327,7 @@ async def test_cc_type_param_list(service_client):
 
 
 async def test_di_type(service_client):
-	"""Di_type endpoint"""
+	"""Di type endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/di-type')
@@ -1417,7 +1417,7 @@ async def test_di_type(service_client):
 
 
 async def test_di_type_list(service_client):
-	"""Discovery request to di_type list endpoint"""
+	"""Di type list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/di-type/list')
@@ -1433,7 +1433,7 @@ async def test_di_type_list(service_client):
 
 
 async def test_di_plugin_param(service_client):
-	"""Di_plugin_param endpoint"""
+	"""Di plugin param endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/di-plugin-param')
@@ -1505,7 +1505,7 @@ async def test_di_plugin_param(service_client):
 
 
 async def test_di_plugin_param_list(service_client):
-	"""Di_plugin_param list endpoint"""
+	"""Di plugin param list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/di-plugin-param/list')
@@ -1521,7 +1521,7 @@ async def test_di_plugin_param_list(service_client):
 
 
 async def test_cc_type_di_type(service_client):
-	"""Cc_type_di_type endpoint"""
+	"""Cc type di type endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/cc-type-di-type')
@@ -1593,7 +1593,7 @@ async def test_cc_type_di_type(service_client):
 
 
 async def test_cc_type_di_type_list(service_client):
-	"""Cc_type_di_type list endpoint"""
+	"""Cc type di type list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-type-di-type/list')
@@ -1609,7 +1609,7 @@ async def test_cc_type_di_type_list(service_client):
 
 
 async def test_device_item(service_client):
-	"""Discovery requests to device_item endpoint"""
+	"""Device item endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/device-item')
@@ -1687,7 +1687,7 @@ async def test_device_item(service_client):
 
 
 async def test_device_item_list(service_client):
-	"""Device_item list endpoint"""
+	"""Device item list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/device-item/list')
@@ -1703,7 +1703,7 @@ async def test_device_item_list(service_client):
 
 
 async def test_cc_mode_type(service_client):
-	"""Cc_mode_type endpoint"""
+	"""Cc mode type endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/cc-mode-type')
@@ -1781,7 +1781,7 @@ async def test_cc_mode_type(service_client):
 
 
 async def test_cc_mode_type_list(service_client):
-	"""Cc_mode_type list endpoint"""
+	"""Cc mode type list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-mode-type/list')
@@ -1797,7 +1797,7 @@ async def test_cc_mode_type_list(service_client):
 
 
 async def test_cc_di(service_client):
-	"""Cc_di endpoint"""
+	"""Cc di endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/cc-di')
@@ -1869,7 +1869,7 @@ async def test_cc_di(service_client):
 
 
 async def test_cc_di_list(service_client):
-	"""Cc_di list endpoint"""
+	"""Cc di list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-di/list')
@@ -1885,7 +1885,7 @@ async def test_cc_di_list(service_client):
 
 
 async def test_cc_param(service_client):
-	"""Cc_param endpoint"""
+	"""Cc param endpoint"""
 
 	"""Get without params"""
 	res = await service_client.get('/project/cc-param')
@@ -1957,7 +1957,7 @@ async def test_cc_param(service_client):
 
 
 async def test_cc_param_list(service_client):
-	"""Cc_param list endpoint"""
+	"""Cc param list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-param/list')
@@ -1973,7 +1973,7 @@ async def test_cc_param_list(service_client):
 
 
 async def test_cc_status_category(service_client):
-	"""Cc_status_category endpoint"""
+	"""Cc status category endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/cc-status-category')
@@ -2055,7 +2055,7 @@ async def test_cc_status_category(service_client):
 
 
 async def test_cc_status_category_list(service_client):
-	"""Cc_status_category list endpoint"""
+	"""Cc status category list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-status-category/list')
@@ -2071,7 +2071,7 @@ async def test_cc_status_category_list(service_client):
 
 
 async def test_cc_status_type(service_client):
-	"""Cc_status_type endpoint"""
+	"""Cc status type endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('project/cc-status-type')
@@ -2105,7 +2105,7 @@ async def test_cc_status_type(service_client):
 	body_valid = {
 		'cc_type_id': 1,
 		'category_id': 1,
-		'key':'abc123',
+		'key': 'abc123',
 		'text': 'Test',
 		'inform': False,
 		'is_deleted': False
@@ -2157,7 +2157,7 @@ async def test_cc_status_type(service_client):
 
 
 async def test_cc_status_type_list(service_client):
-	"""Cc_status_type list endpoint"""
+	"""Cc status type list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/cc-status-type/list')
@@ -2173,7 +2173,7 @@ async def test_cc_status_type_list(service_client):
 
 
 async def test_value_view(service_client):
-	"""Value_view endpoint"""
+	"""Value view endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/value-view')
@@ -2251,7 +2251,7 @@ async def test_value_view(service_client):
 
 
 async def test_value_view_list(service_client):
-	"""Value_view list endpoint"""
+	"""Value view list endpoint"""
 
 	"""Without params"""
 	res = await service_client.get('/project/value-view/list')
@@ -2267,7 +2267,7 @@ async def test_value_view_list(service_client):
 
 
 async def test_translation(service_client):
-	"""Discovery requests to translation endpoint"""
+	"""Translation endpoint"""
 
 	"""Get without param"""
 	res = await service_client.get('/project/translation')
